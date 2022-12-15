@@ -1,7 +1,12 @@
 //LIBRARY
 const express = require("express");
 const cors = require("cors");
+
+
+//REQUIRE DB
+const route = require("./routes");
 const dotenv = require("dotenv");
+require('./dbClient')
 
 const app = express();
 
@@ -11,10 +16,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(route);
+
 // handle 404 error if there are no file
 app.use("*", (req, res, next) => {
     return [
-        res.statusCode(404).json({
+        res.status(404).json({
             code : 404,
             status : false,
             message : "Endpoint doesn't exist"
@@ -24,7 +31,7 @@ app.use("*", (req, res, next) => {
 
 const port = 3001;
 
-const server = app.listen(port, () =>{
+app.listen(port, () =>{
     console.clear();
     console.info(
         "Server app has started on PORT: " +
@@ -35,7 +42,7 @@ const server = app.listen(port, () =>{
     );
 });
 
-module.exports = () => {
-    app = app || express();
-    return app;
-};
+// module.exports = () => {
+//     app = app || express();
+//     return app;
+// };
