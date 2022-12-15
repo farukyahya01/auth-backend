@@ -1,0 +1,28 @@
+{
+  "name": "auth-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farukyahya01/auth-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farukyahya01/auth-backend/issues"
+  },
+  "homepage": "https://github.com/farukyahya01/auth-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-jwt": "^7.7.7",
+    "mongoose": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}
