@@ -7,7 +7,6 @@ const cors = require("cors");
 const route = require("./routes");
 const dotenv = require("dotenv");
 require('./dbClient')
-
 const app = express();
 
 dotenv.config();
@@ -29,7 +28,7 @@ app.use("*", (req, res, next) => {
     ]
 });
 
-const port = 3001;
+const port = 5000;
 
 app.listen(port, () =>{
     console.clear();
@@ -42,7 +41,7 @@ app.listen(port, () =>{
     );
 });
 
-// module.exports = () => {
-//     app = app || express();
-//     return app;
-// };
+module.exports = () => {
+    app = app || express();
+    return app;
+};

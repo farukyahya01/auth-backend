@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
-mongoose.connect("mongodb://localhost:27017", {
-    dbName: "auth",
+mongoose.connect("mongodb://localhost:27017/auth", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
