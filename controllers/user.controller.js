@@ -5,13 +5,17 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     login: async (req, res) => {
         const { email, password } = req.body;
+        
         try {
-            
             const getUser = await User.findOne({email: email});
+            let let_user = {
+                "_id" : getUser._id,
+                "role" : getUser.role 
+            }
             if (getUser) {
                 bcrypt.compare(password, getUser.password, function(err, result) {
                 if (result) {
-                    const token = jwt.sign({email}, "jwtSecret", {
+                    const token = jwt.sign(let_user, "THISISEXAMPLE", {
                         expiresIn: 300,
                     }); 
                     return [
@@ -25,8 +29,8 @@ module.exports = {
                     ]
                 }else{
                     return [
-                        res.status(404).json({
-                            code: 404,
+                        res.status(400).json({
+                            code: 400,
                             status: false,
                             message: "The email or password wrong!"
                         })
@@ -35,8 +39,8 @@ module.exports = {
                 });
             }else{
                 return [
-                    res.status(404).json({
-                        code: 404,
+                    res.status(400).json({
+                        code: 400,
                         status: false,
                         message: "The email or password wrong!"
                     })
@@ -57,8 +61,8 @@ module.exports = {
     register: async (req, res) => {
         const { name, surname, email, password } = req.body;
         bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(password, salt, function(err, hash) {
-                   let password_hashing = hash;
+        bcrypt.hash(password, salt, function(err, hash) {
+            let password_hashing = hash;
             User.create({
                 name: name,
                 surname: surname,
@@ -88,7 +92,7 @@ module.exports = {
                         })
                     ]
                 });
-            });
-        })  
+        });
+        });  
     },
 }
