@@ -20,11 +20,7 @@ app.use(route);
 // handle 404 error if there are no file
 app.use("*", (req, res, next) => {
     return [
-        res.status(404).json({
-            code : 404,
-            status : false,
-            message : "Endpoint doesn't exist"
-        })
+        res.status(404).json({ message : "Endpoint doesn't exist" })
     ]
 });
 

@@ -4,20 +4,12 @@ const router = Router();
 router.get("/", async (req, res) => {
     try {
         return [
-            res.status(200).json({
-                code: 200,
-                status: true,
-                message: "Api running on server",
-            })
+            res.status(200).json({ message: "Api running on server" })
         ]
 
     } catch(e) {
         return [
-            res.status(500).json({
-                code: 500,
-                status: false,
-                message: "Api cannot running on server",
-            })
+            res.status(500).json({ message: "Api cannot running on server" })
         ]
     }
 });

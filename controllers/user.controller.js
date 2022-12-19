@@ -19,31 +19,17 @@ module.exports = {
                         expiresIn: 300,
                     }); 
                     return [
-                        res.status(200).json({
-                            auth: true,
-                            code: 200,
-                            status: true,
-                            message: "Login Successfuly",
-                            token: token, 
-                        })
+                        res.status(200).json({ message: "Login Successfuly", token: token })
                     ]
                 }else{
                     return [
-                        res.status(400).json({
-                            code: 400,
-                            status: false,
-                            message: "The email or password wrong!"
-                        })
+                        res.status(400).json({ message: "The email or password wrong!" })
                     ]
                 }
                 });
             }else{
                 return [
-                    res.status(400).json({
-                        code: 400,
-                        status: false,
-                        message: "The email or password wrong!"
-                    })
+                    res.status(400).json({ message: "The email or password wrong!" })
                 ]
             }
 
@@ -70,26 +56,13 @@ module.exports = {
                 password: password_hashing
                 }).then((user) => {
                     return [
-                        res.status(200).json({
-                            code: 200,
-                            status: true,
-                            message: "The user successfuly registered!",
-                            data: {
-                                name: user.name, 
-                                surname: user.surname, 
-                                email: user.email, 
-                                password: user.password},
-                        })
+                        res.status(200).json({ message: "The user successfuly registered!" })
                     ]
     
                 }).catch((err) => {
                     let message = err.code == 11000 ? "The email already used!" : err.message;
                     return [
-                        res.status(500).json({
-                            code: 500,
-                            status: false,
-                            message: message
-                        })
+                        res.status(500).json({ message: message })
                     ]
                 });
         });
